@@ -1,6 +1,7 @@
 import React from "react";
 import "../components/styles/header.style.css";
 import logo from '../assets/images/logo.png'
+import { Link } from 'react-router-dom';
 
 function Header() {
     return (
@@ -10,7 +11,9 @@ function Header() {
                 <div className="logo"></div>
                 <div className="buttons">
                     <button>Abra sua conta</button>
-                    <button id="btn-secondary">Acessar</button>
+                    <Link to="/login">
+                        <button id="btn-secondary">Acessar</button>
+                    </Link>
                 </div>
             </div>
             <div className="text">

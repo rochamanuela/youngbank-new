@@ -1,14 +1,18 @@
 import React from 'react'
-import Header from './pages/Header'
-import Content from './pages/Content'
-import Footer from './components/Footer'
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Home from './pages/Home'
+import Login from './pages/Login';
 
 export default function App() {
   return (
-    <div>
-      <Header />
-      <Content />
-      <Footer />
-    </div>
+    <Router>
+      <div>
+        {/* Use o componente Routes para envolver suas rotas */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </div>
+    </Router>
   )
 }

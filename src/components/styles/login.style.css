@@ -1,0 +1,175 @@
+.main {
+    /* obs.: consertar esse caminho */
+    background-image: url("../../assets/images/background-login.png");
+    height: 1080px;
+    width: 99.5vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    width: auto;
+    padding: 50px;
+}
+
+.buttons {
+    height: 64px;
+    display: block;
+    gap: 15px;
+}
+
+#btn-secondary {
+    color: #1F1F1F;
+    background-color: transparent;
+    margin-left: 15px;
+}
+
+#btn-secondary:hover {
+    color: #FFF;
+    background-color: #1F1F1F;
+    ;
+}
+
+#img-logo {
+    width: 136px;
+    height: auto;
+}
+
+b {
+    font-weight: 600;
+}
+
+.logo {
+    width: 136.03px;
+    height: 61px;
+    background-image: url("../../assets/images/logo.png");
+    background-color: transparent;
+}
+
+.content {
+    height: 80vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    height: auto;
+    justify-content: left;
+    display: flex;
+    flex-direction: column;
+    width: 480px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 14px;
+
+    margin-top: 40px;
+    margin-bottom: 25px;
+}
+
+/* Estilos para o campo de entrada */
+.custom-input {
+    border-radius: 8px;
+    border: 2px solid #1F1F1F;
+    background-color: #FFF;
+    font-family: Montserrat;
+    font-size: 14px;
+    transition: .5s;
+}
+
+.custom-input {
+    padding: 0 18px;
+    height: 50px;
+    outline: none;
+    color: #1F1F1F;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.custom-input::placeholder {
+    color: #1F1F1F;
+}
+
+input[type="submit"] {
+    border-radius: 8px;
+    border: 2px solid #1F1F1F;
+    background: #1F1F1F;
+    height: 54px;
+    font-family: Montserrat;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    transition: .3s;
+}
+
+input[type="submit"]:hover {
+    background-color: black;
+}
+
+.text-new {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 15px;
+}
+
+b {
+    font-weight: 700;
+}
+
+#link-final {
+    align-self: center;
+    margin-top: 0px;
+}
+
+/* tablets */
+@media screen and (min-width: 768px) and (max-width: 1023px) {}
+
+/* smartphones */
+@media screen and (max-width: 767px) {
+    .main {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .form {
+        width: 85%;
+    }
+
+    .main p, .custom-input, input[type="submit"] {
+        font-size: 20px;
+    }
+
+    .custom-input {
+        height: 65px;
+        border-radius: 15px;
+    }
+
+    input[type="submit"] {
+        height: 74px;
+        border-radius: 15px;
+    }
+
+    .content {
+        height: 100vh;
+    }
+}
