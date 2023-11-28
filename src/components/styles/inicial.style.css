@@ -195,7 +195,7 @@ b {
     flex-direction: row;
     align-items: normal;
     margin-top: 80px;
-    margin-bottom: 70px;
+    padding-bottom: 70px;
 }
 
 b {

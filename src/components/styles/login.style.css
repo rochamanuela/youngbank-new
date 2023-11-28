@@ -1,4 +1,4 @@
-.main {
+.main-login {
     /* obs.: consertar esse caminho */
     background-image: url("../../assets/images/background-login.png");
     height: 1080px;
@@ -51,7 +51,7 @@ b {
     background-color: transparent;
 }
 
-.content {
+.content-login {
     height: 80vh;
     width: 100%;
 
@@ -138,12 +138,9 @@ b {
     margin-top: 0px;
 }
 
-/* tablets */
-@media screen and (min-width: 768px) and (max-width: 1023px) {}
-
 /* smartphones */
 @media screen and (max-width: 767px) {
-    .main {
+    .main-login {
         width: auto;
         display: flex;
         flex-direction: column;
@@ -155,7 +152,7 @@ b {
         width: 85%;
     }
 
-    .main p, .custom-input, input[type="submit"] {
+    .main-login p, .custom-input, input[type="submit"] {
         font-size: 20px;
     }
 
@@ -169,7 +166,9 @@ b {
         border-radius: 15px;
     }
 
-    .content {
+    .content-login {
         height: 100vh;
+        align-items: center;
+        justify-content: center;
     }
 }

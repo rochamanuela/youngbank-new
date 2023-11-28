@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 function Login() {
     return (
         <div>
-            <div className="main">
+            <div className="main-login">
                 <div className="menu-top">
                     <div className="logo"></div>
                 </div>
-                <div className="content">
+                <div className="content-login">
                     <div className="form">
                         <h1>Login</h1>
                         <p className="text-new">Bem vindo novamente! Faça login para acessar sua conta</p>
@@ -20,7 +20,7 @@ function Login() {
                             <input type="submit" value="Acessar" />
                         </form>
                         <p className="text-new" id="link-final">Ainda não é cliente YoungBank? <b>Crie sua conta aqui</b></p>
-                        <Link to="/inicial">entrar</Link>
+                        {/*<Link to="/inicial">entrar</Link>*/}
                     </div>
                 </div>
             </div>

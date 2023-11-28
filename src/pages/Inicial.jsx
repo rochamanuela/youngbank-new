@@ -37,7 +37,7 @@ function Inicial() {
                         <div className="credito">
                             <p>Cartão de crédito</p>
                             <p id="limit">Limite disponível</p>
-                            <h2>R$ 250,00</h2>
+                            <h2>R$ 0,00</h2>
                         </div>
                     </div>
                     <div className="right">
