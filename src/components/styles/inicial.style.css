@@ -1,0 +1,307 @@
+.main {
+    background-color: #FFF;
+    background-image: none;
+    height: auto;
+}
+
+.menu-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    width: auto;
+    padding: 50px;
+}
+
+.menu-top p {
+    color: #000;
+    font-size: 20px;
+}
+
+.menu-top .menu-item p,
+.menu-top .login-info p {
+    font-size: 12px;
+}
+
+.menu-top .menu-item h2,
+.menu-top .login-info h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.menu-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 45px;
+}
+
+.login-info p {
+    color: rgb(255, 71, 71);
+    font-weight: 600;
+}
+
+#img-logo {
+    width: 136px;
+    height: auto;
+}
+
+b {
+    font-weight: 600;
+}
+
+.logo {
+    width: 136.03px;
+    height: 61px;
+    background-image: url("../../assets/images/logo.png");
+    background-color: transparent;
+}
+
+.img-1,
+.img-2,
+.img-3,
+.img-4 {
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+}
+
+.img-1 {
+    background-image: url("../../assets/images/savings.png");
+}
+
+.img-2 {
+    background-image: url("../../assets/images/account_balance.png");
+}
+
+.img-3 {
+    background-image: url("../../assets/images/currency_exchange.png");
+}
+
+.img-4 {
+    background-image: url("../../assets/images/verified_user.png");
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 50px 35px;
+    gap: 15px;
+
+    border-radius: 20px;
+    border: 2px solid #000;
+    background: #FFF;
+
+    flex: 1 0 20%;
+    box-sizing: border-box;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.card h2 {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.card p {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.right h1 {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.left {
+    width: 30%;
+    margin-left: 100px;
+    margin-right: 80px;
+}
+
+.right {
+    width: 70%;
+    margin-right: 100px;
+}
+
+.saldo p,
+.credito p {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.saldo h1,
+.credito h2 {
+    color: #1F1F1F;
+    font-family: Montserrat;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 10px;
+}
+
+.credito #limit {
+    color: #1F1F1F;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 30px;
+    margin-bottom: 5px
+}
+
+.credito {
+    border-radius: 20px;
+    background: rgba(199, 125, 255, 0.30);
+    width: auto;
+    height: auto;
+    padding: 36px 32px;
+    margin-top: 40px;
+}
+
+.content {
+    height: auto;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: normal;
+    margin-top: 80px;
+    margin-bottom: 70px;
+}
+
+b {
+    font-weight: 700;
+}
+
+/* tablets */
+@media screen and (min-width: 1140px) and (max-width: 1445px) {
+    .content {
+        flex-direction: column;
+        margin-top: 30px;
+    }
+
+    .left,
+    .right {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    #beneficios {
+        margin-top: 50px;
+    }
+}
+
+@media screen and (min-width: 940px) and (max-width: 1139px) {
+    .content {
+        flex-direction: column;
+        margin-top: 30px;
+    }
+
+    .left,
+    .right {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    #beneficios {
+        margin-top: 50px;
+    }
+
+    .card {
+        flex: 1 0 40%;
+    }
+}
+
+/* smartphones */
+@media screen and (min-width: 700px) and (max-width: 939px) {
+    .content {
+        flex-direction: column;
+        margin-top: 30px;
+    }
+
+    .left,
+    .right {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    #beneficios {
+        margin-top: 50px;
+    }
+
+    .card {
+        flex: 1 0 40%;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    .content {
+        flex-direction: column;
+        margin-top: 30px;
+    }
+
+    .left,
+    .right {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    #beneficios {
+        margin-top: 50px;
+    }
+
+    .card {
+        flex: 1 0 40%;
+    }
+
+    .menu-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .card p,
+    .menu-top .menu-item p,
+    .menu-top .login-info p {
+        font-size: 20px;
+    }
+
+    .card h2 {
+        font-size: 30px;
+        font-weight: 600;
+    }
+
+    .card {
+        gap: 20px;
+        flex: 1 0 100%;
+    }
+}

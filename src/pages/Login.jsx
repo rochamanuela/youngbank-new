@@ -20,7 +20,7 @@ function Login() {
                             <input type="submit" value="Acessar" />
                         </form>
                         <p className="text-new" id="link-final">Ainda não é cliente YoungBank? <b>Crie sua conta aqui</b></p>
-                        <Link to="/login">entrar</Link>
+                        <Link to="/inicial">entrar</Link>
                     </div>
                 </div>
             </div>
