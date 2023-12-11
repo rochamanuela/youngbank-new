@@ -1,47 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import "../components/styles/login.style.css";
 import Footer from "../components/Footer";
-import { Link } from 'react-router-dom';
-
-import { useState } from "react";
 import { useUser } from "../UserContext";
 import axiosInstance from "../services/axiosInstance";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
-    const handleSubmit = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://127.0.0.1:8000/api/v1/auth/token/login/", {
-                method: "POST",
-                // headers: {
-                //     "Content-Type": "application/json",
-                // },
-                body: JSON.stringify({ email, password }),
+            const response = await axiosInstance.post('auth/token/login/', {
+                email: email,
+                password: password,
             });
 
-            if (response.ok) {
-                // Login bem-sucedido, obtém o token da resposta
-                const responseData = await response.json();
-                const token = responseData.token; // Certifique-se de substituir "token" pelo nome real do campo em sua resposta
+            console.log(response.data);
 
-                // Armazena o token no localStorage ou em algum estado global (você pode usar useContext ou Redux, por exemplo)
+            if (response.status === 200) {
+                const responseData = response.data;
+                const token = responseData.token;
                 localStorage.setItem("token", token);
+                
+                console.log(token)
 
-                // Redireciona para a página de dados da conta usando a tag Link
-                return <Link to="/inicial" />;
+                // Redireciona para a página de dados da conta usando o Link
+                window.location.href = "/inicial";
             } else {
                 // Tratar erro de login aqui
-                console.error("Erro no login");
+                setError("Erro no login");
             }
         } catch (error) {
             console.error("Erro ao processar a solicitação", error);
+            setError("Erro ao processar a solicitação");
         }
     };
-
 
     return (
         <div>
@@ -52,8 +49,8 @@ function Login() {
                 <div className="content-login">
                     <div className="form">
                         <h1>Login</h1>
-                        <p className="text-new">Bem vindo novamente! Faça login para acessar sua conta</p>
-                        <form onSubmit={handleSubmit}>
+                        <p className="text-new">Bem-vindo novamente! Faça login para acessar sua conta</p>
+                        <form onSubmit={handleLogin}>
                             <input
                                 type="email"
                                 name="email"
@@ -64,7 +61,8 @@ function Login() {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
 
-                            <input type="password"
+                            <input
+                                type="password"
                                 name="senha"
                                 id="senha"
                                 placeholder="Senha"
@@ -76,7 +74,7 @@ function Login() {
                             <input type="submit" value="Acessar" />
                         </form>
                         <p className="text-new" id="link-final">Ainda não é cliente YoungBank? <b>Crie sua conta aqui</b></p>
-                        {/*<Link to="/inicial">entrar</Link>*/}
+                        {error && <p className="error-message">{error}</p>}
                     </div>
                 </div>
             </div>
@@ -86,5 +84,3 @@ function Login() {
 }
 
 export default Login;
-
-// feaa60e25e23f21eccbcd07b3e3528a3884f9e1b
