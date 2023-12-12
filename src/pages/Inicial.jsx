@@ -1,84 +1,90 @@
+// Importa React e hooks necessários do React, estilos, componente Footer, Link para navegação e axiosInstance para fazer requisições HTTP.
 import React, { useEffect, useState } from "react";
 import "../components/styles/inicial.style.css";
 import Footer from "../components/Footer";
 import { Link } from 'react-router-dom';
 import axiosInstance from "../services/axiosInstance";
 
+// Define o componente funcional Inicial
 function Inicial() {
-    // Estado para armazenar os dados do usuário
+    // Declaração de um estado para armazenar os dados do usuário
     const [userData, setUserData] = useState(null);
-    const [userSaldo, setSaldo] = useState(null);
+    // Declaração de um estado para armazenar os dados da conta do usuário
+    const [userSaldo, setUserSaldo] = useState(null);
 
-    // Efeito colateral para carregar os dados do usuário após a montagem do componente
+    // Efeito colateral que roda após a montagem do componente
     useEffect(() => {
-        // Token de autenticação (simulado, deve ser tratado de forma segura em produção)
+        // Carrega os dados do usuário ao montar o componente
         const token = 'feaa60e25e23f21eccbcd07b3e3528a3884f9e1b';
+        if (token.trim() !== '') {
+            loadUserData(token);
+        }
 
-        // Verifica se o token está presente
-        if (token) {
-            loadUserData(token); // Carrega os dados do usuário usando o token
+        if (token.trim() !== '') {
+            loadSaldo(token);
         }
     }, []);
 
     // Função assíncrona para carregar os dados do usuário
-    const loadUserData = async () => {
+    const loadUserData = async (token) => {
         try {
-            // Requisição GET para obter os dados do usuário
-            const dados = await axiosInstance.get(
+            // Faz uma requisição GET usando axiosInstance para obter dados do usuário
+            const response = await axiosInstance.get(
                 'cliente_pf/',
                 {
                     headers: {
-                        'Authorization': `Token feaa60e25e23f21eccbcd07b3e3528a3884f9e1b`,
+                        'Authorization': `Token ${token}`,
                     },
                 }
             );
+            console.log(response.data);
 
-            console.log(dados.data);
-
-            // Verifica se a propriedade 'nome' está presente nos dados
-            if (dados.data.length > 0 && dados.data[0].nome !== undefined) {
-                console.log(dados.data[0].nome);
-                setSaldo(dados.data[0]); // Atualiza o estado com os dados do usuário
+            // Verifica se a resposta contém dados
+            if (Array.isArray(response.data) && response.data.length > 0) {
+                console.log(response.data[0].nome);
+                setUserData(response.data[0]); // Atualiza o estado com os dados do usuário
             } else {
-                console.error('Propriedade não encontrada na resposta.');
+                console.error('Dados do usuário não encontrados na resposta ou nome é nulo ou vazio.');
             }
         } catch (error) {
-            console.error("Erro ao processar a solicitação", error);
+            // Trata erros de requisição
+            console.error("Erro ao processar a solicitação:", error);
         }
     };
 
-    // const loadSaldo = async () => {
-    //     try {
-    //         const dados = await axiosInstance.get(
-    //             'conta/',
-    //             {
-    //                 headers: {
-    //                     'Authorization': `Token feaa60e25e23f21eccbcd07b3e3528a3884f9e1b`,
-    //                 },
-    //             }
-    //         );
+    // Função assíncrona para carregar os dados da conta do usuário
+    const loadSaldo = async (token) => {
+        try {
+            // Faz uma requisição GET usando axiosInstance para obter dados da conta
+            const response = await axiosInstance.get(
+                'conta/',
+                {
+                    headers: {
+                        'Authorization': `Token ${token}`,
+                    },
+                }
+            );
+            console.log(response.data);
 
-    //         console.log(dados.data);
+            // Verifica se a resposta contém dados
+            if (Array.isArray(response.data) && response.data.length > 0) {
+                console.log(response.data[0].saldo);
+                setUserSaldo(response.data[0]); // Atualiza o estado com os dados da conta
+            } else {
+                console.error('Dados da conta não encontrados na resposta ou saldo é nulo ou vazio.');
+            }
+        } catch (error) {
+            // Trata erros de requisição
+            console.error("Erro ao processar a solicitação:", error);
+        }
+    };
 
-    //         // Verifica se a propriedade 'saldo' está presente nos dados
-    //         if (dados.data.length > 0 && dados.data[0].saldo !== undefined) {
-    //             console.log(dados.data[0].saldo);
-    //             setSaldo(dados.data[0]); // Atualiza o estado com os dados do saldo
-    //         } else {
-    //             console.error('Propriedade não encontrada na resposta.');
-    //         }
-    //     } catch (error) {
-    //         console.error("Erro ao processar a solicitação", error);
-    //     }
-    // };
-
-    // Componente principal
+    // Renderiza o componente JSX
     return (
         <div>
             <div className="main">
                 {/* Seção do menu superior */}
                 <div className="menu-top">
-                    {/* Linha do menu */}
                     <div className="menu-row">
                         <div className="logo"></div>
                         <p>O banco digital feito para <b>você :)</b></p>
@@ -101,6 +107,7 @@ function Inicial() {
                                     <p>Sair</p>
                                 </>
                             ) : (
+                                // Se os dados do usuário não estiverem disponíveis
                                 <p>Carregando...</p>
                             )}
                         </div>
@@ -112,14 +119,13 @@ function Inicial() {
                     {/* Lado esquerdo com informações de saldo e cartão de crédito */}
                     <div className="left">
                         <div className="saldo">
-                            {/* {userSaldo ? (
-                                <>
-                                    <p>Saldo atual</p>
-                                    <h1>{userSaldo.saldo}</h1>
-                                </>
+                            <p>Saldo atual</p>
+                            {userSaldo ? (
+                                <h1>R$ {userSaldo.saldo}</h1>
                             ) : (
-                                <p>Carregando...</p>
-                            )} */}
+                                // Se os dados da conta não estiverem disponíveis
+                                <h1>Carregando...</h1>
+                            )}
                         </div>
                         <div className="credito">
                             <p>Cartão de crédito</p>
@@ -133,7 +139,39 @@ function Inicial() {
                         <h1 id="beneficios">Conheça seus benefícios Young</h1>
                         {/* Cards com informações sobre poupança, investimentos, movimentações e seguro */}
                         <div className="cards">
-                            {/* ... (código dos cards) ... */}
+                            {/* Card 1 */}
+                            <div className="card">
+                                <div className="img-1"></div>
+                                <h2>Poupança</h2>
+                                <p>No Young Bank, oferecemos contas de poupança com taxas competitivas e opções
+                                    flexíveis, incentivando você a crescer financeiramente com segurança, pois
+                                    priorizamos o seu sucesso.</p>
+                            </div>
+                            {/* Card 2 */}
+                            <div className="card">
+                                <div className="img-2"></div>
+                                <h2>Investimentos</h2>
+                                <p>Aqui no Young Bank, proporcionamos a você acesso a uma variedade de opções de
+                                    investimento, permitindo que você maximize seus ganhos com portfólios diversificados
+                                    e assessoria especializada para alcançar seus objetivos financeiros.</p>
+                            </div>
+                            {/* Card 3 */}
+                            <div className="card">
+                                <div className="img-3"></div>
+                                <h2>Movimentações</h2>
+                                <p>Nosso compromisso no Young Bank é tornar a movimentação financeira ágil e eficiente
+                                    para você. Seja por meio de aplicativos móveis intuitivos ou em nossas agências
+                                    físicas, estamos focados em oferecer a você facilidade no gerenciamento das suas
+                                    finanças.</p>
+                            </div>
+                            {/* Card 4 */}
+                            <div className="card">
+                                <div className="img-4"></div>
+                                <h2>Seguro</h2>
+                                <p>Aqui no Young Bank, garantimos a sua tranquilidade financeira, proporcionando soluções
+                                    abrangentes de seguro. Desde seguros de vida até coberturas para seus bens
+                                    patrimoniais, estamos ao seu lado para proteger o que mais importa para você.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -144,4 +182,5 @@ function Inicial() {
     );
 }
 
+// Exporta o componente para ser utilizado em outros lugares
 export default Inicial;
